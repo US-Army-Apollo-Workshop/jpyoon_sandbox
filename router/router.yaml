@@ -34,4 +34,11 @@ limits:
   max_depth: 50
   max_height: 100
   max_aliases: 30
-  
+
+persisted_queries:
+  enabled: true
+  safelist:
+    enabled: true
+    require_id: false
+apq:
+  enabled: false
