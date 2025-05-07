@@ -38,7 +38,7 @@ limits:
 persisted_queries:
   enabled: true
   safelist:
-    enabled: true
+    enabled: false
     require_id: false
 apq:
   enabled: false
