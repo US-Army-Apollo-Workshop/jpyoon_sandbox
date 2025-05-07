@@ -1,0 +1,29 @@
+name: Update Router on Cloud Run
+
+on:
+  push:
+    paths:
+      - '**.yaml'
+  workflow_dispatch:
+  workflow_call:
+  repository_dispatch:
+    types: [update-router-event]
+
+env:
+  GEN: ${{ secrets.GEN || 'ws1' }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2.1.4'
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Add Secret data
+        run: gcloud secrets versions add --data-file=./router/router.yaml ${{vars.ACTOR}}
